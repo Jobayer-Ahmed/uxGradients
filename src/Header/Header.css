@@ -1,0 +1,21 @@
+.Header {
+	background-color: whitesmoke;
+}
+
+.text-center {
+    padding-top: 40px;
+    font-size: 1em;
+}
+
+.header_title {
+	font-size: 2em;
+	font-weight: 900;
+	margin-bottom: 30px;
+}
+
+.header_text {
+	color: #6a6969;
+	line-height: 1.4;
+	padding-bottom: 30px;
+	margin-bottom: 20px;
+}
