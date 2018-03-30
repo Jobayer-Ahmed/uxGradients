@@ -39,7 +39,7 @@ class App extends Component {
                 <Header/>
                 {
                     <div className="container-fluid">
-                        <div className="row hide">
+                        <div className="row">
                             {
                                 ref.state.data.map(function(el, i) {
                                     return (
