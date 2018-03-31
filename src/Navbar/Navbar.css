@@ -56,3 +56,9 @@
 	color: initial;
 	text-decoration: none;
 }
+
+@media only screen and (max-width: 800px) {
+    .link {
+        display: none;
+    }
+}

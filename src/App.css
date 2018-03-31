@@ -62,4 +62,10 @@ b {
 
 .hide {
     display: none;
+    transition: all .5s ease-in-out;
+}
+
+.show {
+    display: block !important;
+    transition: all .5s ease-in-out;
 }

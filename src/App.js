@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import Add from './Add/Add';
 
 class App extends Component {
     constructor(props) {
@@ -10,7 +11,10 @@ class App extends Component {
         const ref = this;
         ref.state = {
           data: [],
+          condition: false,
+          icon: false,
         }
+        ref.show = ref.show.bind(ref);
     }
 
     componentWillMount() {
@@ -32,18 +36,29 @@ class App extends Component {
         }
     }
 
+    show() {
+        const ref = this;
+        ref.setState({
+            condition: !ref.state.condition,
+            icon: !ref.state.icon,
+        })
+    }
+
     render() {
         const ref = this;
         return (
             <div className="App">
-                <Header/>
+                <Header update={ref.show} icon={ref.state.icon}/>
                 {
                     <div className="container-fluid">
-                        <div className="row">
+                        <div className= { ref.state.condition ? "add show" : "add hide" }>
+                            <Add />
+                        </div>
+                        <div className= { ref.state.condition ? "row hide" : "row" }>
                             {
                                 ref.state.data.map(function(el, i) {
                                     return (
-                                        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" key={i}>
                                             <div className="cards">
                                                 <div className="image" style={el.colors[3] ? {background: `linear-gradient(to left, ${el.colors[0]}, ${el.colors[1]}, ${el.colors[2]}, ${el.colors[3]})`} : el.colors[2] ? {background: `linear-gradient(to left, ${el.colors[0]}, ${el.colors[1]}, ${el.colors[2]})`} : {background: `linear-gradient(to left, ${el.colors[0]} , ${el.colors[1]})`}}>
                                                     <div className="copy_circle">
@@ -55,7 +70,7 @@ class App extends Component {
                                                     <div className="code">
                                                         {
                                                             el.colors.map(function(elem, i) {
-                                                                return <span>{elem} </span>
+                                                                return <span key={i}>{elem} </span>
                                                             })
                                                         }
                                                     </div>
