@@ -20,38 +20,54 @@ class Add extends Component {
         ref.add = ref.add.bind(ref);
         ref.handleChange = ref.handleChange.bind(ref);
         ref.handleSubmit = ref.handleSubmit.bind(ref);
+        ref.reset = ref.reset.bind(ref);
 	}
 
 	picker1 = (color) => {
-    	this.setState({ picker1: color.hex });
+    	this.setState({
+            picker1: color.hex
+        });
   	};
 
   	picker2 = (color) => {
-    	this.setState({ picker2: color.hex });
+    	this.setState({ 
+            picker2: color.hex
+        });
   	};
 
     picker3 = (color) => {
-        this.setState({ picker3: color.hex });
+        this.setState({ 
+            picker3: color.hex
+        });
     };
 
     picker4 = (color) => {
-        this.setState({ picker4: color.hex });
+        this.setState({ 
+            picker4: color.hex
+        });
     };
 
     handleChange(e) {
         const ref = this;
         ref.setState({
             value: e.target.value,
-        })
-    }
+        });
+    };
 
     handleSubmit() {
         const ref = this;
         const name = ref.state.value;
         let color = [];
-        color.push(ref.state.picker1, ref.state.picker2);
-        ref.add(name, color)
-    }
+        if(ref.state.picker3 === '#fff' && ref.state.picker4 === '#fff') {
+            color.push(ref.state.picker1, ref.state.picker2)
+        } else if(ref.state.picker3 !== '#fff') {
+            color.push(ref.state.picker1, ref.state.picker2, ref.state.picker3)
+        } if(ref.state.picker4 !== '#fff') {
+            color.push(ref.state.picker1, ref.state.picker2, ref.state.picker3, ref.state.picker4);
+        }
+        ref.add(name, color);
+        ref.reset()
+    };
 
     add(colorName, colorCode) {
         const ref = this;
@@ -64,7 +80,21 @@ class Add extends Component {
             newColor: newColor
         })
         console.log(newColor)
-    }
+    };
+
+    reset() {
+        const ref = this;
+        ref.setState = {
+            picker1: '#fff',
+            picker2: '#fff',
+            picker3: '#fff',
+            picker4: '#fff',
+            direction: 'left',
+            value: '',
+            color: [],
+            newColor: [],
+        }
+    };
 
     render() {
         const ref = this;
@@ -75,13 +105,12 @@ class Add extends Component {
             y = `${ref.state.picker1}, ${ref.state.picker2}`
         } else if(ref.state.picker3 !== '#fff') {
             y = `${ref.state.picker1}, ${ref.state.picker2}, ${ref.state.picker3}`
-        } 
-        if(ref.state.picker4 !== '#fff') {
+        } if(ref.state.picker4 !== '#fff') {
             y = `${ref.state.picker1}, ${ref.state.picker2}, ${ref.state.picker3}, ${ref.state.picker4}`
         }
         let style = {
             background: "linear-gradient(to left, " + y + ")",
-        }
+        }   
         console.log(style);
         return (
             <div className="Add">
