@@ -20,29 +20,32 @@ class Add extends Component {
         ref.add = ref.add.bind(ref);
         ref.handleChange = ref.handleChange.bind(ref);
         ref.handleSubmit = ref.handleSubmit.bind(ref);
-        ref.reset = ref.reset.bind(ref);
 	}
 
 	picker1 = (color) => {
-    	this.setState({
+        const ref = this;
+    	ref.setState({
             picker1: color.hex
         });
   	};
 
   	picker2 = (color) => {
-    	this.setState({ 
+        const ref = this;
+    	ref.setState({ 
             picker2: color.hex
         });
   	};
 
     picker3 = (color) => {
-        this.setState({ 
+        const ref = this;
+        ref.setState({ 
             picker3: color.hex
         });
     };
 
     picker4 = (color) => {
-        this.setState({ 
+        const ref = this;
+        ref.setState({ 
             picker4: color.hex
         });
     };
@@ -66,7 +69,6 @@ class Add extends Component {
             color.push(ref.state.picker1, ref.state.picker2, ref.state.picker3, ref.state.picker4);
         }
         ref.add(name, color);
-        ref.reset()
     };
 
     add(colorName, colorCode) {
@@ -77,23 +79,9 @@ class Add extends Component {
         const newColor = [];
         newColor.push(colors)
         ref.setState({
-            newColor: newColor
-        })
-        console.log(newColor)
-    };
-
-    reset() {
-        const ref = this;
-        ref.setState = {
-            picker1: '#fff',
-            picker2: '#fff',
-            picker3: '#fff',
-            picker4: '#fff',
-            direction: 'left',
-            value: '',
-            color: [],
-            newColor: [],
-        }
+            newColor: newColor,
+        });
+        ref.reset();
     };
 
     render() {
